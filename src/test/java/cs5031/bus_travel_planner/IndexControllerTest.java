@@ -35,12 +35,12 @@ public class IndexControllerTest {
 
 	@Test
 	public void testGetSearchJson() throws Exception {
-		mockMvc.perform(get("/buses/DRA/MarketStreet/Tuesday")).andExpect(status().isOk());
+		mockMvc.perform(get("/buses?from=DRA&to=DRA&day=Tuesday&time=11:00")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void testAddRoute() throws Exception {
-		mockMvc.perform(get("/buses/DRA/99A")).andExpect(status().isOk());
+		mockMvc.perform(get("/buses?stop=DRA&route=99A")).andExpect(status().isOk());
 	}
 
 }

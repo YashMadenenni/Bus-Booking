@@ -1,0 +1,9 @@
+{
+    "bus":{
+        "route":"1A",
+        "start":"DRA",
+        "stop1":"Sports Center",
+        "stop2":"Powell Hall",
+        "Destination":"Market Street"
+    }
+}

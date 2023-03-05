@@ -1,4 +1,5 @@
 package cs5031.bus_travel_planner;
+import java.util.LinkedHashMap;
 
 public class Route {
     private int routeId;
@@ -19,21 +20,19 @@ public class Route {
             this.stopList.put(routeEnd.getStopName(), routeEnd);
     }
 
-    public getRouteName() {
+    public String getRouteName() {
         return routeName;
     }
-    public getStopList() {
+    public LinkedHashMap<String, Stop> getStopList() {
         return stopList;
     }
-    public getRouteStart() {
+    public Stop getRouteStart() {
         return routeStart;
     }
-    public getRouteEnd() {
+    public Stop getRouteEnd() {
         return routeEnd;
     }
-    public getDirection() {
+    public String getDirection() {
         return direction;
     }
-
-
 }

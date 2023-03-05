@@ -13,10 +13,16 @@ public class BusModel {
     private ArrayList<Route> allRoutes;
 
     public BusModel(String jsonPath) {
+
+        JSONObject json = null;
         try {
-            loadInitialState(jsonPath); 
+            json = loadInitialState(jsonPath); 
         }
         catch (IOException | JSONException e){
+        }
+
+        if(null != json) {
+            allRoutes = processJsonObject(json);       
         }
     }
 
@@ -26,4 +32,13 @@ public class BusModel {
             String jsonBody = new String(Files.readAllBytes(Paths.get(jsonPath)));
             return new JSONObject(jsonBody);
         }
+
+    protected ArrayList<Route> processJsonObject(JSONObject json) {
+        ArrayList<Route> allRoutes = new ArrayList<Route>();
+        return allRoutes;
+    }
+
+    public ArrayList<Route> getAllRoutes() {
+        return allRoutes;
+    }
 }

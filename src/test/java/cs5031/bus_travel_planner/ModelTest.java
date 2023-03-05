@@ -14,10 +14,14 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class ModelTest {
     private BusModel testModel;
+    private Route firstRoute;
+    private Stop firstStop;
 
     @BeforeEach
         public void setup() {
             testModel = new BusModel("src/test/resources/initialState.json");
+            firstRoute = testModel.getAllRoutes().get(0);
+            firstStop = firstRoute.getStopList().get(0);
         }
 
     //TC1
@@ -89,5 +93,45 @@ public class ModelTest {
             }
         }
 
+    //TC6
+    @Test
+        public void testJsonToRouteConversionSizeCheck() {
+            assertEquals(2,testModel.getAllRoutes().size());
+        }
 
+    //TC7
+    @Test
+        public void testJsonToRouteConversionCheckFirstRouteName() {
+           assertEquals("99", firstRoute.getRouteName());
+        }
+
+    //TC8
+    @Test
+        public void testJsonToRouteConversionCheckFirstRouteDirection() {
+           assertEquals("UP", firstRoute.getDirection());
+        }
+
+    //TC9
+    @Test
+        public void testJsonToRouteConversionCheckFirstRouteStopSize() {
+           assertEquals(2, firstRoute.getStopList().size());
+        }
+
+    //TC10
+    @Test
+        public void testJsonToRouteConversionCheckFirstRouteFirstStopName() {
+           assertEquals("St. Andrews Main Stop", firstStop.getStopName()); 
+        }
+
+    //TC11
+    @Test
+        public void testJsonToRouteConversionCheckFirstRouteFirstStopLocation() {
+           assertEquals("KY16 9UX", firstStop.getStopLocation()); 
+        }
+
+    //TC12
+    @Test
+        public void testJsonToRouteConversionCheckFirstRouteFirstStopTimeTableSize() {
+           assertEquals("7", firstStop.getTimeTable.size()); 
+        }
 }

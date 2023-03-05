@@ -3,6 +3,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,10 +20,22 @@ public class ModelTest {
         }
 
     @Test
-        public void shouldNotOpenJson() throws IOException {
-            IOException thrown = 
-                assertThrowsExactly(IOException.class, () -> {
+        public void shouldNotOpenJson() {
+            NoSuchFileException thrown = 
+                assertThrowsExactly(NoSuchFileException.class, () -> {
                         BusModel.loadInitialState("src/test/resources/wrongpath.json");
                         });
+        }
+
+    @Test
+        public void shouldOpenJson() throws IOException, JSONException {
+            JSONObject result = null;
+            try {
+                result = BusModel.loadInitialState("src/test/resources/test.json");
+            }
+            catch (IOException | JSONException e) {
+            }
+
+            assertNotNull(result);
         }
 }

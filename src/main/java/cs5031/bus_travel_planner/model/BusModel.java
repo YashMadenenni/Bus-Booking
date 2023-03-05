@@ -22,6 +22,8 @@ public class BusModel {
 
     protected static JSONObject loadInitialState(String jsonPath) 
         throws IOException, JSONException {
-            return new JSONObject();
+
+            String jsonBody = new String(Files.readAllBytes(Paths.get(jsonPath)));
+            return new JSONObject(jsonBody);
         }
 }

@@ -8,30 +8,26 @@
                 "stopName" : "St. Andrews Main Stop",
                 "stopLocation" : "KY16 9UX",
                 "timeTable" : [
-                {
-                    "Monday" : "12:00",
-                    "Tuesday" : "12:05",
-                    "Wednesday" : "12:10",
-                    "Thursday" : "13:00",
-                    "Friday" : "14:00",
-                    "Saturday" : "15:00",
-                    "Sunday" : "16:00"
-                }
+                    {"Time" : "Monday 12:00"},
+                    {"Time" : "Tuesday 12:05"},
+                    {"Time" : "Wednesday 12:10"},
+                    {"Time" : "Thursday 13:00"},
+                    {"Time" : "Friday 14:00"},
+                    {"Time" : "Saturday 15:00"},
+                    {"Time" : "Sunday 16:00"}
                 ]
             } ,
             {
                 "stopName" : "Market Street",
                 "stopLocation" : "KY16 9UY",
                 "timeTable" : [
-                {
-                    "Monday" : "12:05",
-                    "Tuesday" : "12:10",
-                    "Wednesday" : "12:15",
-                    "Thursday" : "13:05",
-                    "Friday" : "14:05",
-                    "Saturday" : "15:05",
-                    "Sunday" : "16:05"
-                }
+                    {"Time" : "Monday 12:05"},
+                    {"Time" : "Tuesday 12:10"},
+                    {"Time" : "Wednesday 12:15"},
+                    {"Time" : "Thursday 13:05"},
+                    {"Time" : "Friday 14:05"},
+                    {"Time" : "Saturday 15:05"},
+                    {"Time" : "Sunday 16:05"}
                 ]
             } 
         ]
@@ -44,30 +40,26 @@
             "stopName" : "Market Street",
             "stopLocation" : "KY16 9UY",
             "timeTable" : [
-            {
-                "Monday" : "12:05",
-                "Tuesday" : "12:10",
-                "Wednesday" : "12:15",
-                "Thursday" : "13:05",
-                "Friday" : "14:05",
-                "Saturday" : "15:05",
-                "Sunday" : "16:05"
-            }
+                    {"Time" : "Monday 12:00"},
+                    {"Time" : "Tuesday 12:05"},
+                    {"Time" : "Wednesday 12:10"},
+                    {"Time" : "Thursday 13:00"},
+                    {"Time" : "Friday 14:00"},
+                    {"Time" : "Saturday 15:00"},
+                    {"Time" : "Sunday 16:00"}
             ]
         },
         {
             "stopName" : "St. Andrews Main Stop",
             "stopLocation" : "KY16 9UX",
             "timeTable" : [
-            {
-                "Monday" : "12:00",
-                "Tuesday" : "12:05",
-                "Wednesday" : "12:10",
-                "Thursday" : "13:00",
-                "Friday" : "14:00",
-                "Saturday" : "15:00",
-                "Sunday" : "16:00"
-            }
+                    {"Time" : "Monday 12:05"},
+                    {"Time" : "Tuesday 12:10"},
+                    {"Time" : "Wednesday 12:15"},
+                    {"Time" : "Thursday 13:05"},
+                    {"Time" : "Friday 14:05"},
+                    {"Time" : "Saturday 15:05"},
+                    {"Time" : "Sunday 16:05"}
             ]
         }      
         ]

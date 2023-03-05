@@ -6,9 +6,9 @@ import java.time.format.DateTimeFormatter;
 
 public class TimeTable {
     private String dayofWeek;
-    private LocalDateTime time;
+    private String time;
 
-    public TimeTable(String dayofWeek, LocalDateTime time) {
+    public TimeTable(String dayofWeek, String time) {
         this.dayofWeek = dayofWeek;
         this.time = time;
     }
@@ -16,7 +16,7 @@ public class TimeTable {
     public String getDayofWeek() {
         return dayofWeek;
     }
-    public LocalDateTime getTime() {
+    public String getTime() {
         return time;
     }
 }

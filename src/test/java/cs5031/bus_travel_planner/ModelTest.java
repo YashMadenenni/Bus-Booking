@@ -21,7 +21,7 @@ public class ModelTest {
         public void setup() {
             testModel = new BusModel("src/test/resources/initialState.json");
             firstRoute = testModel.getAllRoutes().get(0);
-            firstStop = firstRoute.getStopList().get(0);
+            firstStop = firstRoute.getStopList().get("St. Andrews Main Stop");
         }
 
     //TC1
@@ -132,6 +132,8 @@ public class ModelTest {
     //TC12
     @Test
         public void testJsonToRouteConversionCheckFirstRouteFirstStopTimeTableSize() {
-           assertEquals("7", firstStop.getTimeTable.size()); 
+           assertEquals(7, firstStop.getStopTimings().size()); 
         }
+        
+
 }

@@ -20,6 +20,11 @@ public class IndexController {
     public String welcome() {
         return "index.html";
     }
+    
+@RequestMapping(method = RequestMethod.GET, value = "/test")
+    public String test() {
+        return "initialState.json";
+    }
 
     //All the locations
     @RequestMapping(method = RequestMethod.GET, value = "/locations",produces = MediaType.APPLICATION_JSON_VALUE)

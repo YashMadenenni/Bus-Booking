@@ -7,10 +7,14 @@ public class Stop {
     private String stopLocation;
     private ArrayList<TimeTable> stopTimings;
 
-    public Stop(String stopName, String stopLocation, ArrayList<TimeTable> stopTimings) {
+    public Stop(String stopName, String stopLocation) {
         this.stopName = stopName;
         this.stopLocation = stopLocation;
-        this.stopTimings = stopTimings;
+        stopTimings = new ArrayList<TimeTable>();
+    }
+
+    public void addTiming(TimeTable time) {
+        stopTimings.add(time);
     }
 
     public String getStopName() {

@@ -1,0 +1,76 @@
+{
+    "routes": [
+    {
+        "routeName": "99",
+            "direction": "UP",
+            "stopList": [
+            {
+                "stopName" : "St. Andrews Main Stop",
+                "stopLocation" : "KY16 9UX",
+                "timeTable" : [
+                {
+                    "Monday" : "12:00",
+                    "Tuesday" : "12:05",
+                    "Wednesday" : "12:10",
+                    "Thursday" : "13:00",
+                    "Friday" : "14:00",
+                    "Saturday" : "15:00",
+                    "Sunday" : "16:00"
+                }
+                ]
+            } ,
+            {
+                "stopName" : "Market Street",
+                "stopLocation" : "KY16 9UY",
+                "timeTable" : [
+                {
+                    "Monday" : "12:05",
+                    "Tuesday" : "12:10",
+                    "Wednesday" : "12:15",
+                    "Thursday" : "13:05",
+                    "Friday" : "14:05",
+                    "Saturday" : "15:05",
+                    "Sunday" : "16:05"
+                }
+                ]
+            } 
+        ]
+    },
+    {
+        "routeName": "99",
+        "direction": "DOWN",
+        "stopList": [
+        {
+            "stopName" : "Market Street",
+            "stopLocation" : "KY16 9UY",
+            "timeTable" : [
+            {
+                "Monday" : "12:05",
+                "Tuesday" : "12:10",
+                "Wednesday" : "12:15",
+                "Thursday" : "13:05",
+                "Friday" : "14:05",
+                "Saturday" : "15:05",
+                "Sunday" : "16:05"
+            }
+            ]
+        },
+        {
+            "stopName" : "St. Andrews Main Stop",
+            "stopLocation" : "KY16 9UX",
+            "timeTable" : [
+            {
+                "Monday" : "12:00",
+                "Tuesday" : "12:05",
+                "Wednesday" : "12:10",
+                "Thursday" : "13:00",
+                "Friday" : "14:00",
+                "Saturday" : "15:00",
+                "Sunday" : "16:00"
+            }
+            ]
+        }      
+        ]
+    }
+    ]
+}

@@ -7,15 +7,16 @@ import java.time.format.DateTimeFormatter;
 public class TimeTable {
     private String dayofWeek;
     private LocalDateTime time;
-    private int routeId;
+
+    public TimeTable(String dayofWeek, LocalDateTime time) {
+        this.dayofWeek = dayofWeek;
+        this.time = time;
+    }
 
     public String getDayofWeek() {
         return dayofWeek;
     }
     public LocalDateTime getTime() {
         return time;
-    }
-    public int getRouteId() {
-        return routeId;
     }
 }

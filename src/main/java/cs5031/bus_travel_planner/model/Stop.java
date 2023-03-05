@@ -1,9 +1,17 @@
 package cs5031.bus_travel_planner;
+import java.util.LinkedHashMap;
+import java.util.ArrayList;
 
 public class Stop {
     private String stopName;
     private String stopLocation;
-    private TimeTable stopTimings;
+    private ArrayList<TimeTable> stopTimings;
+
+    public Stop(String stopName, String stopLocation, ArrayList<TimeTable> stopTimings) {
+        this.stopName = stopName;
+        this.stopLocation = stopLocation;
+        this.stopTimings = stopTimings;
+    }
 
     public String getStopName() {
         return this.stopName;
@@ -13,9 +21,7 @@ public class Stop {
         return stopLocation;
     }
 
-    public TimeTable getStopTimings() {
+    public ArrayList<TimeTable> getStopTimings() {
         return stopTimings;
     }
 }
-
-

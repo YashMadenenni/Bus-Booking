@@ -186,13 +186,13 @@ public class ModelTest {
     @Test
         public void testResultRouteNameNegativeSearchRoutesForGivenStop() {
             String result = testModel.getRoutesFromStop("Market Street");
-            assertTrue(result.contains("99 DOWn"));
+            assertFalse(result.contains("99 DOWn"));
         }
     //TC23
     @Test
         public void testResultRouteNameNegativeSecondSearchRoutesForGivenStop() {
             String result = testModel.getRoutesFromStop("Market Street");
-            assertTrue(result.contains("99 up"));
+            assertFalse(result.contains("99 up"));
         }
     //TC24
     @Test
@@ -222,13 +222,13 @@ public class ModelTest {
     @Test
         public void testResultRouteTimeNegativeSearchRoutesForGivenDayAndStop() {
             String result = testModel.getRoutesFromStop("Market Street", "Monday");
-            assertTrue(result.contains("12:10"));
+            assertFalse(result.contains("12:10"));
         }
     //TC29
     @Test
         public void testResultRouteTimeSecondNegativeSearchRoutesForGivenDayAndStop() {
             String result = testModel.getRoutesFromStop("Market Street", "Monday");
-            assertTrue(result.contains("12:20"));
+            assertFalse(result.contains("12:20"));
         }
     //TC30
     @Test

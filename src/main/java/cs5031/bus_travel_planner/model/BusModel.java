@@ -28,18 +28,72 @@ public class BusModel {
     }
 
     public String getRoutesFromStop(String stop) {
-        String result = "";
-        return result;
+
+        JSONObject container = new JSONObject();
+        JSONArray routeArray = new JSONArray();
+
+        for(Route routeItem : allRoutes) {
+            if(null != routeItem.getStopList().get(stop)) {
+                routeArray.put(
+                        routeItem.getRouteName() + " " + routeItem.getDirection());
+            }
+        }
+
+        container.put("searchResult", routeArray);
+
+        System.out.println(container.toString());
+        return container.toString();
     }
 
     public String getRoutesFromStop(String stop, String day, String time) {
-        String result = "";
-        return result;
+
+        JSONObject container = new JSONObject();
+        JSONArray routeArray = new JSONArray();
+
+        for(Route routeItem : allRoutes) {
+            Stop matchedStop = routeItem.getStopList().get(stop);
+            if(null != matchedStop) {
+
+                TimeTable timeTable = matchedStop.getStopTimings().get(day); 
+                if(null != timeTable) {
+                    if(timeTable.getTime().equals(time)) {
+                        routeArray.put(
+                                routeItem.getRouteName() + " " + routeItem.getDirection());
+                    }
+                }
+            }
+        }
+
+        container.put("searchResult", routeArray);
+
+        System.out.println(container.toString());
+        return container.toString();
     }
 
     public String getRoutesFromStop(String stop, String day) {
-        String result = "";
-        return result;
+
+        JSONObject container = new JSONObject();
+        JSONArray routeArray = new JSONArray();
+
+        for(Route routeItem : allRoutes) {
+            Stop matchedStop = routeItem.getStopList().get(stop);
+            if(null != matchedStop) {
+
+                TimeTable timeTable = matchedStop.getStopTimings().get(day); 
+                if(null != timeTable) {
+                    routeArray.put(
+                            routeItem.getRouteName() + " " + 
+                            routeItem.getDirection() + " " +
+                            timeTable.getDayofWeek() + " " +
+                            timeTable.getTime());
+                }
+            }
+        }
+
+        container.put("searchResult", routeArray);
+
+        System.out.println(container.toString());
+        return container.toString();
     }
 
     protected static JSONObject loadInitialState(String jsonPath) 

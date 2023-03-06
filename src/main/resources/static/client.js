@@ -86,7 +86,7 @@ async function BusesOnDay() {
     const day = new Date(document.getElementById("day").value);
     console.log(weekdays[day.getDay()]);
 
-    const request = await fetch(`http://localhost:8080/buses?from=${from}&day=${day}`, { method: "GET" });
+    const request = await fetch(`http://localhost:8080/buses?from=${from}&day=${weekdays[day.getDay()]}`, { method: "GET" });
         const response = await request.json();
         console.log(response);
         

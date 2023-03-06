@@ -49,7 +49,7 @@ public class IndexController {
     // @CrossOrigin(origins = "http://localhost:8080/buses")
     public String searchBusesForStop(@RequestParam("from") String from) {
          
-        model.getRoutesFromStop(from);
+        JsonIO.convertStringToJson(model.getRoutesFromStop(from));
         return "buses.json";
     }
 
@@ -57,7 +57,7 @@ public class IndexController {
     @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","day","time"})
     public String searchBusesForStop(@RequestParam("from") String from,  @RequestParam("day") String day, @RequestParam("time") String time) {
         
-        model.getRoutesFromStop(from, day, time);
+        JsonIO.convertStringToJson(model.getRoutesFromStop(from, day, time));
         return "buses.json";
     }
     
@@ -65,7 +65,7 @@ public class IndexController {
     @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","day"})
     public String searchBusesForStopReturnTime(@RequestParam("from") String from, @RequestParam("day") String day) {
         
-        model.getRoutesFromStop(from, day);
+        JsonIO.convertStringToJson(model.getRoutesFromStop(from, day));
         return "buses.json";
     }
 

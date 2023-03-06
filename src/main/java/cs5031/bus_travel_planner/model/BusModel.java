@@ -41,7 +41,6 @@ public class BusModel {
 
         container.put("searchResult", routeArray);
 
-        System.out.println(container.toString());
         return container.toString();
     }
 
@@ -66,7 +65,6 @@ public class BusModel {
 
         container.put("searchResult", routeArray);
 
-        System.out.println(container.toString());
         return container.toString();
     }
 
@@ -92,7 +90,6 @@ public class BusModel {
 
         container.put("searchResult", routeArray);
 
-        System.out.println(container.toString());
         return container.toString();
     }
 

@@ -49,18 +49,14 @@
             <div class="row">
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
                     <label for="from">Start:</label>
-                    <select class="form-select" name="from" id="from">
-                        <option value="">option</option>
-                        <option value="">option</option>
-                        <option value="">option</option>
+                    <select class="form-select" name="from" id="from" >
+                        <option value="" selected>Choose location</option>
                     </select>
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
                     <label for="to">Destination:</label>
                     <select class="form-select" name="to" id="to">
-                        <option value="">option</option>
-                        <option value="">option</option>
-                        <option value="">option</option>
+                        
                     </select>
                 </div>
 
@@ -69,7 +65,7 @@
                     <label for="day">From Date:</label>
                     <input type="datetime-local" name="day" id="day"
                         class="form-control" value="" required="required"
-                        title="">
+                        title="" placeholder="Choose Date/Time">
                 </div>
 
 
@@ -113,19 +109,22 @@
 
                         <label for="from">Route:</label>
                         <select class="form-select" name="route" id="route">
-                            <option value="">option</option>
-                            <option value="">option</option>
-                            <option value="">option</option>
+                            
                         </select>
                         <br>
 
-                        <label for="from">Stop:</label>
-                        <select class="form-select" name="stopAdd" id="stopAdd">
-                            <option value="">option</option>
-                            <option value="">option</option>
-                            <option value="">option</option>
-                        </select>
-
+                        <label for="from">Stop:
+                        
+                        <input class="form-control" type="text" name="stopAdd" id="stopAdd" placeholder="Enter Stop Name" aria-describedby="basic-addon2"></label>
+                        <br>
+                        <label for="dateTime">Pin Code:
+                        
+                            <input class="form-control" type="text" name="stopLocation" id="stopLocation" placeholder="KY16 9UX" aria-describedby="basic-addon2"></label>
+                            <br>
+                            <label for="addDay">From Date:
+                    <input type="datetime-local" name="addDay" id="addDay"
+                        class="form-control" value="" required="required"
+                        title="" placeholder="Choose Date/Time"></label>
 
                     </div>
                 </div>

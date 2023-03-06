@@ -1,23 +1,23 @@
 package cs5031.bus_travel_planner;
 import java.util.LinkedHashMap;
+import org.json.JSONObject;
+import org.json.JSONArray;
 
 public class Route {
     private int routeId;
     private String routeName;
     private LinkedHashMap<String, Stop> stopList;
-    private Stop routeStart;
-    private Stop routeEnd;
     private String direction;
 
-    public Route(String routeName, Stop routeStart, 
-            Stop routeEnd, String direction) {
+    public Route(String routeName, String direction) {
             
             this.routeName = routeName;
-            this.routeStart = routeStart;
-            this.routeEnd = routeEnd;
             this.direction = direction;
-            this.stopList.put(routeStart.getStopName(), routeStart);
-            this.stopList.put(routeEnd.getStopName(), routeEnd);
+            stopList = new LinkedHashMap<String, Stop>();
+    }
+
+    public void addStop(Stop stopToAdd) {
+        stopList.put(stopToAdd.getStopName(), stopToAdd);
     }
 
     public String getRouteName() {
@@ -25,12 +25,6 @@ public class Route {
     }
     public LinkedHashMap<String, Stop> getStopList() {
         return stopList;
-    }
-    public Stop getRouteStart() {
-        return routeStart;
-    }
-    public Stop getRouteEnd() {
-        return routeEnd;
     }
     public String getDirection() {
         return direction;

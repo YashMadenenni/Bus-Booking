@@ -5,12 +5,16 @@ import java.util.ArrayList;
 public class Stop {
     private String stopName;
     private String stopLocation;
-    private ArrayList<TimeTable> stopTimings;
+    private LinkedHashMap<String, TimeTable> stopTimings;
 
-    public Stop(String stopName, String stopLocation, ArrayList<TimeTable> stopTimings) {
+    public Stop(String stopName, String stopLocation) {
         this.stopName = stopName;
         this.stopLocation = stopLocation;
-        this.stopTimings = stopTimings;
+        stopTimings = new LinkedHashMap<String, TimeTable>(); 
+    }
+
+    public void addTiming(TimeTable time) {
+        stopTimings.put(time.getDayofWeek(), time);
     }
 
     public String getStopName() {
@@ -21,7 +25,7 @@ public class Stop {
         return stopLocation;
     }
 
-    public ArrayList<TimeTable> getStopTimings() {
+    public LinkedHashMap<String, TimeTable> getStopTimings() {
         return stopTimings;
     }
 }

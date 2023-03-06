@@ -15,12 +15,17 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @Controller
 public class IndexController {
 
-    // Model model; //Object for model to call search function
+    BusModel model = new BusModel("src/main/resources/static/initialState.json"); //Object for model to call search function
 
     //Main page
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String welcome() {
         return "index.html";
+    }
+    
+@RequestMapping(method = RequestMethod.GET, value = "/test")
+    public String test() {
+        return "initialState.json";
     }
 
     //All the locations
@@ -44,15 +49,15 @@ public class IndexController {
     // @CrossOrigin(origins = "http://localhost:8080/buses")
     public String searchBusesForStop(@RequestParam("from") String from) {
          
-        // model.search(from);
+        model.getRoutesFromStop(from);
         return "buses.json";
     }
 
     //List all routes serving a given stop at a certain time of day
     @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","day","time"})
-    public String searchBusesForStop(@RequestParam("from") String from, @RequestParam("time") String time) {
+    public String searchBusesForStop(@RequestParam("from") String from,  @RequestParam("day") String day, @RequestParam("time") String time) {
         
-        // model.searchWithTime(from,time,day);
+        model.getRoutesFromStop(from, day, time);
         return "buses.json";
     }
     
@@ -60,7 +65,7 @@ public class IndexController {
     @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","day"})
     public String searchBusesForStopReturnTime(@RequestParam("from") String from, @RequestParam("day") String day) {
         
-        // model.searchBusesForStopReturnTime(from,day);
+        model.getRoutesFromStop(from, day);
         return "buses.json";
     }
 

@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus Booking</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bus Booking</title>
 
-    <!--Bootstrap 5 CDN-->
-    <!-- Latest compiled and minified CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!--Bootstrap 5 CDN-->
+        <!-- Latest compiled and minified CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+            rel="stylesheet">
 
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!--Bootstrap 5 CDN-->
+        <!-- Latest compiled JavaScript -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!--Bootstrap 5 CDN-->
 
-    <script src="client.js"></script>
-</head>
+        <script src="client.js"></script>
+    </head>
 
-<!--image src= https://wallpapercave.com/w/wp7642246-->
-<body style="background-image: url(bus.jpg); background-repeat: no-repeat; background-size: cover;">
+    <!--image src= https://wallpapercave.com/w/wp7642246-->
+    <body style="background-image: url(bus.jpg); background-repeat: no-repeat;
+        background-size: cover;">
 
-    <div class="container bg-light align-content-center p-4">
-        <div class="text-center">
-            <h4 >Search Busses</h4>
-        </div>
-       <!-- <div class="row">
+        <div class="container bg-light align-content-center p-4">
+            <div class="text-center">
+                <h4>Search Buses</h4>
+            </div>
+            <!-- <div class="row">
         
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             <div class="form-check form-check-inline radio">
@@ -42,57 +46,115 @@
         </div>
         
        </div> -->
-       
-       
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
-                <label for="from">From:</label>
-                <select class="form-select" name="from" id="from">
-                    <option value="">option</option>
-                    <option value="">option</option>
-                    <option value="">option</option>
-                </select>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+                    <label for="from">Start:</label>
+                    <select class="form-select" name="from" id="from">
+                        <option value="">option</option>
+                        <option value="">option</option>
+                        <option value="">option</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+                    <label for="to">Destination:</label>
+                    <select class="form-select" name="to" id="to">
+                        <option value="">option</option>
+                        <option value="">option</option>
+                        <option value="">option</option>
+                    </select>
+                </div>
+
+
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+                    <label for="day">From Date:</label>
+                    <input type="datetime-local" name="day" id="day"
+                        class="form-control" value="" required="required"
+                        title="">
+                </div>
+
+
+
+
+
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
-                <label for="to">To:</label>
-                <select class="form-select" name="to" id="to">
-                    <option value="">option</option>
-                    <option value="">option</option>
-                    <option value="">option</option>
-                </select>
+
+            <div class="row">
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 m-4">
+                    <button class="btn btn-success" type=""
+                        onclick="SearchBuses()">Search Buses</button>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 m-4">
+                    <button class="btn btn-success" type=""
+                        onclick="BusesForaStop()">Routes for Start</button>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 m-4">
+                    <button class="btn btn-success" type=""
+                        onclick="BusesOnDay()">Routes for Start on Day</button>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 m-4">
+                    <button class="btn btn-success" type=""
+                        onclick="BusesOnDayTime()">Routes for Start Day/Time</button>
+                </div>
+
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 m-4">
+                    <button class="btn btn-info" type=""
+                        data-bs-toggle="collapse"
+                        data-bs-target="#addStop">Add Stop to a Route</button>
+                </div>
+
+
+
             </div>
-            
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 m-4">
-                <button class="btn btn-success" type="" onclick="SearchBuses()">Search Buses</button>
+
+            <div class="row collapse" id="addStop">
+
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="card card-body">
+
+                        <label for="from">Route:</label>
+                        <select class="form-select" name="route" id="route">
+                            <option value="">option</option>
+                            <option value="">option</option>
+                            <option value="">option</option>
+                        </select>
+                        <br>
+
+                        <label for="from">Stop:</label>
+                        <select class="form-select" name="stopAdd" id="stopAdd">
+                            <option value="">option</option>
+                            <option value="">option</option>
+                            <option value="">option</option>
+                        </select>
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <button class="btn btn-success" type="submit"
+                        onclick="AddStop()">Add Route</button>
+                </div>
+
             </div>
-            
+        </div>
+
+
+
+
+        <div class="container  my-4 text-center">
+            <div class="bg-light p-4">
+                <h3 class="text-bg-warning ">Busses Available</h3>
+
+                <div class="row" id="searchResult">
+
+                </div>
+            </div>
+
             
 
         </div>
-        
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
-                <label for="day">From Date:</label>
-                <input type="datetime-local" name="day" id="day" class="form-control" value="" required="required" title="">
-            </div>
-            <!-- <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
-                <label for="returnDate">Return Date:</label>
-                <input type="date" name="returnDate" id="returnDate" class="form-control" value="" required="required" title="" disabled="disabled">
-            </div> -->
-        </div>
-        
-    </div>
-    
-    
-    <div class="container my-4 text-center">
-        <h3 class="text-bg-warning">Busses Available</h3>
-        
-        <div class="row" id="searchResult">
-            
-        </div>
-        
-    </div>
-    
-    
-</body>
+
+
+    </body>
 </html>

@@ -97,5 +97,9 @@ async function AddStop() {
 
 function DisplayBus(response) {
     document.getElementById("searchResult").innerHTML = "";
+    for(const key in response) {
+        console.log(response[key].forEach(element => console.log(element)));
+    }
     document.getElementById("searchResult").innerHTML = document.getElementById("searchResult").innerHTML + JSON.stringify(response);
+    console.log(typeof(response));
 }

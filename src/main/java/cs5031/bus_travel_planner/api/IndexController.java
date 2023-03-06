@@ -13,7 +13,7 @@ import org.springframework.http.MediaType;
 @Controller
 public class IndexController {
 
-    // Model model; //Object for model to call search function
+    BusModel model = new BusModel("src/main/resources/static/initialState.json"); //Object for model to call search function
 
     //Main page
     @RequestMapping(method = RequestMethod.GET, value = "/")
@@ -46,15 +46,15 @@ public class IndexController {
     @RequestMapping(method = RequestMethod.GET, value = "/buses", params = "from")
     public String searchBusesForStop(@RequestParam("from") String from) {
          
-        // model.search(from);
+        model.getRoutesFromStop(from);
         return "buses.json";
     }
 
     //List all routes serving a given stop at a certain time of day
-    @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","time"})
-    public String searchBusesForStop(@RequestParam("from") String from, @RequestParam("time") String time) {
+    @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","day","time"})
+    public String searchBusesForStop(@RequestParam("from") String from,  @RequestParam("day") String day, @RequestParam("time") String time) {
         
-        // model.searchWithTime(from,time);
+        model.getRoutesFromStop(from, day, time);
         return "buses.json";
     }
     
@@ -62,7 +62,7 @@ public class IndexController {
     @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","day"})
     public String searchBusesForStopReturnTime(@RequestParam("from") String from, @RequestParam("day") String day) {
         
-        // model.searchBusesForStopReturnTime(from,day);
+        model.getRoutesFromStop(from, day);
         return "buses.json";
     }
 

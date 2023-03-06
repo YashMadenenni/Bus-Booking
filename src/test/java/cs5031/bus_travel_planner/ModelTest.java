@@ -138,36 +138,36 @@ public class ModelTest {
     //TC13
     @Test
         public void testJsonToRouteConversionCheckFirstRouteFirstStopMonTime() {
-            assertEquals("12:00", firstStop.getStopTimings().get(0).getTime());
+            assertEquals("12:00", firstStop.getStopTimings().get("Monday").getTime());
         }
     //TC14
     @Test
         public void testJsonToRouteConversionCheckFirstRouteFirstStopTuesTime() {
-            assertEquals("12:05", firstStop.getStopTimings().get(1).getTime());
+            assertEquals("12:05", firstStop.getStopTimings().get("Tuesday").getTime());
         }
     //TC15
     @Test
         public void testJsonToRouteConversionCheckFirstRouteFirstStopWedTime() {
-            assertEquals("12:10", firstStop.getStopTimings().get(2).getTime());
+            assertEquals("12:10", firstStop.getStopTimings().get("Wednesday").getTime());
         }
     //TC16
     @Test
         public void testJsonToRouteConversionCheckFirstRouteFirstStopThuTime() {
-            assertEquals("13:00", firstStop.getStopTimings().get(3).getTime());
+            assertEquals("13:00", firstStop.getStopTimings().get("Thursday").getTime());
         }
     //TC17
     @Test
         public void testJsonToRouteConversionCheckFirstRouteFirstStopFriTime() {
-            assertEquals("14:00", firstStop.getStopTimings().get(4).getTime());
+            assertEquals("14:00", firstStop.getStopTimings().get("Friday").getTime());
         }
     //TC18
     @Test
         public void testJsonToRouteConversionCheckFirstRouteFirstStopSatTime() {
-            assertEquals("15:00", firstStop.getStopTimings().get(5).getTime());
+            assertEquals("15:00", firstStop.getStopTimings().get("Saturday").getTime());
         }
     //TC19
     @Test
         public void testJsonToRouteConversionCheckFirstRouteFirstStopSunTime() {
-            assertEquals("16:00", firstStop.getStopTimings().get(6).getTime());
+            assertEquals("16:00", firstStop.getStopTimings().get("Sunday").getTime());
         }
 }

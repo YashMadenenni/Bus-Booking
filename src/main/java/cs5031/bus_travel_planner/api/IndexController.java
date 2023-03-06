@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.json.JSONObject;
 
 @Controller
 public class IndexController {
@@ -22,16 +23,11 @@ public class IndexController {
     public String welcome() {
         return "index.html";
     }
-    
-@RequestMapping(method = RequestMethod.GET, value = "/test")
-    public String test() {
-        return "initialState.json";
-    }
 
     //All the locations
     @RequestMapping(method = RequestMethod.GET, value = "/locations",produces = MediaType.APPLICATION_JSON_VALUE)
     public String locations() {
-        return "locations.json";
+        return "initialState.json";
     }
 
     //Search Start
@@ -83,6 +79,7 @@ public class IndexController {
     public String searchResults(@RequestBody RouteStop requestBody ) {
         String route = requestBody.getRoute();
         String stop = requestBody.getStop();
+        
         // model.addStopToRoute();
         return "Adding";
     }
@@ -90,7 +87,8 @@ public class IndexController {
     public static class RouteStop {
         private String route;
         private String stop;
-        
+        private String stopLocation;
+        private JSONObject timeTable[]; 
         public String getStop() {
             return stop;
         }
@@ -102,6 +100,18 @@ public class IndexController {
         }
         public void setRoute(String route) {
             this.route = route;
+        }
+        public String getStopLocation() {
+            return stopLocation;
+        }
+        public void setStopLocation(String stopLocation) {
+            this.stopLocation = stopLocation;
+        }
+        public JSONObject[] getTimeTable() {
+            return timeTable;
+        }
+        public void setTimeTable(JSONObject[] timeTable) {
+            this.timeTable = timeTable;
         }
     }
 }

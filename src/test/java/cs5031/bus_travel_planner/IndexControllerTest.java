@@ -38,6 +38,21 @@ public class IndexControllerTest {
 		mockMvc.perform(get("/buses?from=DRA&to=DRA&day=Tuesday&time=11:00")).andExpect(status().isOk());
 	}
 
+	@Test
+	public void testsearchRouteForStop() throws Exception {
+		mockMvc.perform(get("/buses?from=DRA")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void testsearchBusesForStopReturnRoute() throws Exception {
+		mockMvc.perform(get("/buses?from=DRA&day=Tuesday&time=11:00")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void testsearchBusesOnADayForStop() throws Exception {
+		mockMvc.perform(get("/buses?from=DRA&day=Tue")).andExpect(status().isOk());
+	}
+
 /*
 	@Test
 	public void testAddRoute() throws Exception {

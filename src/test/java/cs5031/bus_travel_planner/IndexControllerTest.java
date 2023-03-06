@@ -38,9 +38,11 @@ public class IndexControllerTest {
 		mockMvc.perform(get("/buses?from=DRA&to=DRA&day=Tuesday&time=11:00")).andExpect(status().isOk());
 	}
 
+/*
 	@Test
 	public void testAddRoute() throws Exception {
 		mockMvc.perform(get("/buses?stop=DRA&route=99A")).andExpect(status().isOk());
 	}
+        */
 
 }

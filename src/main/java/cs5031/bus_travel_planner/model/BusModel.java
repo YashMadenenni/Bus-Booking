@@ -27,7 +27,20 @@ public class BusModel {
         }
     }
 
+    public String getRoutesFromStop(String stop) {
+        String result = "";
+        return result;
+    }
 
+    public String getRoutesFromStop(String stop, String day, String time) {
+        String result = "";
+        return result;
+    }
+
+    public String getRoutesFromStop(String stop, String day) {
+        String result = "";
+        return result;
+    }
 
     protected static JSONObject loadInitialState(String jsonPath) 
         throws IOException, JSONException {

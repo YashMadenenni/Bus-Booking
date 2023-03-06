@@ -170,4 +170,88 @@ public class ModelTest {
         public void testJsonToRouteConversionCheckFirstRouteFirstStopSunTime() {
             assertEquals("16:00", firstStop.getStopTimings().get("Sunday").getTime());
         }
+    //TC20
+    @Test
+        public void testResultRouteNameSearchRoutesForGivenStop() {
+            String result = testModel.getRoutesFromStop("Market Street");
+            assertTrue(result.contains("99 UP"));
+        }
+    //TC21
+    @Test
+        public void testResultRouteNameSecondSearchRoutesForGivenStop() {
+            String result = testModel.getRoutesFromStop("Market Street");
+            assertTrue(result.contains("99 DOWN"));
+        }
+    //TC22
+    @Test
+        public void testResultRouteNameNegativeSearchRoutesForGivenStop() {
+            String result = testModel.getRoutesFromStop("Market Street");
+            assertTrue(result.contains("99 DOWn"));
+        }
+    //TC23
+    @Test
+        public void testResultRouteNameNegativeSecondSearchRoutesForGivenStop() {
+            String result = testModel.getRoutesFromStop("Market Street");
+            assertTrue(result.contains("99 up"));
+        }
+    //TC24
+    @Test
+        public void testResultRouteNameSearchRoutesForGivenDayAndStop() {
+            String result = testModel.getRoutesFromStop("Market Street", "Monday");
+            assertTrue(result.contains("99 UP"));
+        }
+    //TC25
+    @Test
+        public void testResultRouteNameSecondSearchRoutesForGivenDayAndStop() {
+            String result = testModel.getRoutesFromStop("Market Street", "Monday");
+            assertTrue(result.contains("99 DOWN"));
+        }
+    //TC26
+    @Test
+        public void testResultRouteTimeSearchRoutesForGivenDayAndStop() {
+            String result = testModel.getRoutesFromStop("Market Street", "Monday");
+            assertTrue(result.contains("12:05"));
+        }
+    //TC27
+    @Test
+        public void testResultRouteTimeSecondSearchRoutesForGivenDayAndStop() {
+            String result = testModel.getRoutesFromStop("Market Street", "Monday");
+            assertTrue(result.contains("12:00"));
+        }
+    //TC28
+    @Test
+        public void testResultRouteTimeNegativeSearchRoutesForGivenDayAndStop() {
+            String result = testModel.getRoutesFromStop("Market Street", "Monday");
+            assertTrue(result.contains("12:10"));
+        }
+    //TC29
+    @Test
+        public void testResultRouteTimeSecondNegativeSearchRoutesForGivenDayAndStop() {
+            String result = testModel.getRoutesFromStop("Market Street", "Monday");
+            assertTrue(result.contains("12:20"));
+        }
+    //TC30
+    @Test
+        public void testResultRouteNameNegativeSearchRoutesForGivenDayAndStop() {
+            String result = testModel.getRoutesFromStop("Market Street", "Monday");
+            assertTrue(result.contains("12:00"));
+        }
+    //TC31
+    @Test
+        public void testResultRouteNameNegativeSecondSearchRoutesForGivenDayAndStop() {
+            String result = testModel.getRoutesFromStop("Market Street", "Monday");
+            assertTrue(result.contains("12:00"));
+        }
+    //TC32
+    @Test
+        public void testResultRouteNameSearchRoutesForGivenDayTimeAndStop() {
+            String result = testModel.getRoutesFromStop("Market Street", "Monday", "12:00");
+            assertTrue(result.contains("99 DOWN"));
+        }
+    //TC33
+    @Test
+        public void testResultRouteNameSecondSearchRoutesForGivenDayTimeAndStop() {
+            String result = testModel.getRoutesFromStop("Market Street", "Monday", "12:05");
+            assertTrue(result.contains("99 UP"));
+        }
 }

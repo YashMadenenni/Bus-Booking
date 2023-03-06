@@ -4,11 +4,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-//import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Controller
 public class IndexController {
@@ -35,7 +37,7 @@ public class IndexController {
     //Search Start
     //To search
     @RequestMapping(method = RequestMethod.GET, value = "/buses", 
-    params = {"from","to","day","time"})
+    params = {"from","to","day","time"},produces = MediaType.APPLICATION_JSON_VALUE)
     public String searchResults(@RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("day") String day) {
         // 
         // model.search(from,to,day);
@@ -43,7 +45,8 @@ public class IndexController {
     }
 
     //List all routes serving a given stop
-    @RequestMapping(method = RequestMethod.GET, value = "/buses", params = "from")
+    @RequestMapping(method = RequestMethod.GET, value = "/buses", params = "from",produces = MediaType.APPLICATION_JSON_VALUE)
+    // @CrossOrigin(origins = "http://localhost:8080/buses")
     public String searchBusesForStop(@RequestParam("from") String from) {
          
         model.getRoutesFromStop(from);
@@ -69,13 +72,31 @@ public class IndexController {
     // Search End
 
     //To add a stop to Route
-    @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"stop","route"})
+    @PostMapping (value = "/buses/addRoute") 
     @ResponseBody //sends actual content in double quotes
-    public String searchResults(@RequestParam("stop") String stopName, @RequestParam("route") String route ) {
-        
-        // model.addStopToRoute(from,to,day);
+    public String searchResults(@RequestBody RouteStop requestBody ) {
+        String route = requestBody.getRoute();
+        String stop = requestBody.getStop();
+        // model.addStopToRoute();
         return "Adding";
     }
-}
 
+    public static class RouteStop {
+        private String route;
+        private String stop;
+        
+        public String getStop() {
+            return stop;
+        }
+        public void setStop(String stop) {
+            this.stop = stop;
+        }
+        public String getRoute() {
+            return route;
+        }
+        public void setRoute(String route) {
+            this.route = route;
+        }
+    }
+}
 	

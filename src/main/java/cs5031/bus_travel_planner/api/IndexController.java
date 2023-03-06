@@ -46,27 +46,33 @@ public class IndexController {
 
     //List all routes serving a given stop
     @RequestMapping(method = RequestMethod.GET, value = "/buses", params = "from",produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     // @CrossOrigin(origins = "http://localhost:8080/buses")
     public String searchBusesForStop(@RequestParam("from") String from) {
          
-        JsonIO.convertStringToJson(model.getRoutesFromStop(from));
-        return "buses.json";
+        //JsonIO.convertStringToJson(model.getRoutesFromStop(from));
+        //return "buses.json";
+        return model.getRoutesFromStop(from);
     }
 
     //List all routes serving a given stop at a certain time of day
     @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","day","time"})
+    @ResponseBody
     public String searchBusesForStop(@RequestParam("from") String from,  @RequestParam("day") String day, @RequestParam("time") String time) {
         
-        JsonIO.convertStringToJson(model.getRoutesFromStop(from, day, time));
-        return "buses.json";
+        //JsonIO.convertStringToJson(model.getRoutesFromStop(from, day, time));
+        //return "buses.json";
+        return model.getRoutesFromStop(from, day, time);
     }
     
     //List all times through the day a stop has service.
     @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","day"})
+    @ResponseBody
     public String searchBusesForStopReturnTime(@RequestParam("from") String from, @RequestParam("day") String day) {
         
-        JsonIO.convertStringToJson(model.getRoutesFromStop(from, day));
-        return "buses.json";
+        //JsonIO.convertStringToJson(model.getRoutesFromStop(from, day));
+        //return "buses.json";
+        return model.getRoutesFromStop(from, day);
     }
 
     // Search End

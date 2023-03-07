@@ -57,7 +57,7 @@ public class IndexController {
     }
 
     //List all routes serving a given stop at a certain time of day
-    @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","day","time"})
+    @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","day","time"},produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String searchBusesForStop(@RequestParam("from") String from,  @RequestParam("day") String day, @RequestParam("time") String time) {
         
@@ -67,7 +67,7 @@ public class IndexController {
     }
     
     //List all times through the day a stop has service.
-    @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","day"})
+    @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","day"},produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String searchBusesForStopReturnTime(@RequestParam("from") String from, @RequestParam("day") String day) {
         
@@ -81,7 +81,7 @@ public class IndexController {
     //To add a stop to Route
     @PostMapping (value = "/buses/addRoute") 
     @ResponseBody //sends actual content in double quotes
-    public String searchResults(@RequestBody String requestBody ) {
+    public String addRoute(@RequestBody String requestBody ) {
         //System.out.println(requestBody);
         JSONObject obj = JsonIO.convertStringToJson(requestBody);
 
@@ -99,7 +99,7 @@ public class IndexController {
         //String stop = requestBody.getStop();
         
         // model.addStopToRoute();
-        return "Adding";
+        return "success";
     }
 
     public static class RouteStop {

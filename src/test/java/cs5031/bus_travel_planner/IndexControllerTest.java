@@ -5,7 +5,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,8 @@ public class IndexControllerTest {
 	// 	this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
 	// 			.andExpect(content().string(containsString("Welocme to Bus Travel Planner!")));
 	// }
-
+		BusModel busModel = new BusModel("src/test/resources/initialState.json");
+	
 	@Test
 	public void testGetLocationsJson() throws Exception {
 		mockMvc.perform(get("/locations")).andExpect(status().isOk());
@@ -53,11 +55,51 @@ public class IndexControllerTest {
 		mockMvc.perform(get("/buses?from=DRA&day=Tue")).andExpect(status().isOk());
 	}
 
-/*
+    @Test
+    public void testGetSearchResults() throws Exception {
+        mockMvc.perform(get("/buses?from=DRA&to=St.Andrews&day=Tuesday&time=11:00"))
+                .andExpect(status().isOk())
+                //  .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                 .andExpect(content().string(containsString("")));
+    }
+
+    @Test
+    public void testGetRoutesForStop() throws Exception {
+        mockMvc.perform(get("/buses?from=DRA"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().string(containsString("{\"searchResult\":[]}")));
+    }
+
+    @Test
+    public void testGetBusesForStopReturnRoute() throws Exception {
+        mockMvc.perform(get("/buses?from=DRA&day=Tuesday&time=11:00"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                 .andExpect(content().string(containsString("{\"searchResult\":[]}")));
+    }
+
+    @Test
+    public void testGetBusesOnADayForStop() throws Exception {
+        mockMvc.perform(get("/buses?from=DRA&day=Tue"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                 .andExpect(content().string(containsString("{\"searchResult\":[]}")));
+    }
+
+
+	// valid result
+	
 	@Test
-	public void testAddRoute() throws Exception {
-		mockMvc.perform(get("/buses?stop=DRA&route=99A")).andExpect(status().isOk());
-	}
-        */
+    public void testAddStop() throws Exception {
+        String jsonBody = "{route: \"99 UP\", stopName: \"Yash\", stopLocation: \"KY16 9LY\", timeTable: [{Time: \"Tuesday 18:19\"}]}";
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/buses/addRoute")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonBody))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("success"));
+    }
+
 
 }

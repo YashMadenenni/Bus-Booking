@@ -95,42 +95,7 @@ public class IndexController {
         
         model.addStopToRoute(obj);
 
-        //String route = requestBody.getRoute();
-        //String stop = requestBody.getStop();
-        
-        // model.addStopToRoute();
         return "success";
-    }
-
-    public static class RouteStop {
-        private String route;
-        private String stop;
-        private String stopLocation;
-        private JSONObject timeTable[]; 
-        public String getStop() {
-            return stop;
-        }
-        public void setStop(String stop) {
-            this.stop = stop;
-        }
-        public String getRoute() {
-            return route;
-        }
-        public void setRoute(String route) {
-            this.route = route;
-        }
-        public String getStopLocation() {
-            return stopLocation;
-        }
-        public void setStopLocation(String stopLocation) {
-            this.stopLocation = stopLocation;
-        }
-        public JSONObject[] getTimeTable() {
-            return timeTable;
-        }
-        public void setTimeTable(JSONObject[] timeTable) {
-            this.timeTable = timeTable;
-        }
     }
 }
 	

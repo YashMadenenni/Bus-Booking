@@ -24,32 +24,186 @@
     <body style="background-image: url(bus.jpg); background-repeat: no-repeat;
         background-size: cover;">
 
-        <div class="container bg-light align-content-center p-4">
-            <div class="text-center">
+
+
+
+        <div class="container bg-light align-content-center p-4 my-4 rounded
+            shadow-lg">
+            <h4 class="text-center">Search</h4>
+<br>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" style="--bs-nav-link-color: cadetblue;">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab"
+                        href="#home">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#menu1">Search
+                        for a Stop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#menu2">Search
+                        on a Day</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#menu3">Search
+                        on a Day and Time</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#menu4">Add a route</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div id="home" class="container tab-pane active"><br>
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+                            <label for="from">Start:</label>
+                            <select class="form-select" name="from" id="from">
+                                <option value="" selected>Choose location</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+                            <label for="to">Destination:</label>
+                            <select class="form-select" name="to" id="to">
+                                <option value="" selected>Choose location</option>
+                            </select>
+                        </div>
+        
+        
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+                            <label for="day">From Date:</label>
+                            <input type="datetime-local" name="day" id="day"
+                                class="form-control" value="" required="required"
+                                title="" placeholder="Choose Date/Time">
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 my-4">
+                            <button class="btn btn-success" type=""
+                        onclick="SearchBuses()">Search Buses</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- menu1 -->
+                <div id="menu1" class="container tab-pane fade"><br>
+                    
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+                    <label for="from">Stop:</label>
+                    <select class="form-select" name="from" id="from1">
+                        <option value="" selected>Choose location</option>
+                    </select>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 my-4">
+                    <button class="btn btn-success" type=""
+                        onclick="BusesForaStop()">Routes for Start</button>
+                </div>
+
+            </div>
+                </div>
+                <!-- menu2 -->
+                <div id="menu2" class="container tab-pane fade"><br>
+                   
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+                            <label for="from">Start:</label>
+                            <select class="form-select" name="from" id="from2">
+                                <option value="" selected>Choose location</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+                            <label for="day">From Date:</label>
+                            <input type="datetime-local" name="day" id="day2"
+                                class="form-control" value="" required="required"
+                                title="" placeholder="Choose Date/Time">
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 my-4">
+                            <button class="btn btn-success" type=""
+                        onclick="BusesOnDay()">Routes for Start on Day</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- menu3 -->
+                <div id="menu3" class="container tab-pane fade"><br>
+                    <div class="row">
+                        
+                        
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+                                <label for="from">Start:</label>
+                                <select class="form-select" name="from" id="from3">
+                                    <option value="" selected>Choose location</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+                                <label for="day">From Date:</label>
+                                <input type="datetime-local" name="day" id="day3"
+                                    class="form-control" value="" required="required"
+                                    title="" placeholder="Choose Date/Time">
+                            </div>
+                            
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 my-4">
+                                <button class="btn btn-success" type=""
+                                onclick="BusesOnDayTime()">Routes for Start Day/Time</button>
+                            </div>
+                            
+                            
+                               
+                        
+                    </div>
+                </div>
+                <!-- menu4 -->
+                <div id="menu4" class="container tab-pane fade"><br>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mx-auto">
+                        <div class="card card-body">
+    
+                            <label for="from">Route:</label>
+                            <select class="form-select" name="route" id="route">
+                                <option value="" selected>Choose Route</option>
+                            </select>
+                            <br>
+    
+                            <label for="from">Stop:
+    
+                                <input class="form-control" type="text"
+                                    name="stopAdd" id="stopAdd" placeholder="Enter Stop Name" aria-describedby="basic-addon2"></label>
+                            <br>
+                            <label for="dateTime">Pin Code:
+    
+                                <input class="form-control" type="text"
+                                    name="stopLocation" id="stopLocation"
+                                    placeholder="KY16 9UX"
+                                    aria-describedby="basic-addon2"></label>
+                            <br>
+                            <label for="addDay">Schedule Date:
+                                <input type="datetime-local" name="addDay"
+                                    id="addDay"
+                                    class="form-control" value=""
+                                    required="required"
+                                    title="" placeholder="Choose Date/Time"></label>
+                        </div>
+                    </div>
+    
+                    <br>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 mx-auto text-center">
+                        <button class="btn btn-success " type="submit"
+                            onclick="AddStop()">Add Route</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Nav End-->
+
+            <!-- <div class="text-center">
                 <h4>Search Buses</h4>
             </div>
-            <!-- <div class="row">
-        
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <div class="form-check form-check-inline radio">
-                <label>
-                    <input class="form-check-input" type="radio" name="optradio" id="oneWay" value="" checked="checked" onchange="DisableReturnDate()">
-                    One way
-                </label>
-            </div>
-            <div class="form-check form-check-inline radio">
-                <label>
-                    <input class="form-check-input" type="radio" name="optradio" id="twoWay" value="" onchange="EnableReturnDate()" >
-                    Two way
-                </label>
-            </div>
-        </div>
-        
-       </div> -->
             <div class="row">
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
                     <label for="from">Start:</label>
-                    <select class="form-select" name="from" id="from" >
+                    <select class="form-select" name="from" id="from">
                         <option value="" selected>Choose location</option>
                     </select>
                 </div>
@@ -67,14 +221,9 @@
                         class="form-control" value="" required="required"
                         title="" placeholder="Choose Date/Time">
                 </div>
+            </div> -->
 
-
-
-
-
-            </div>
-
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 m-4">
                     <button class="btn btn-success" type=""
                         onclick="SearchBuses()">Search Buses</button>
@@ -114,18 +263,24 @@
                         <br>
 
                         <label for="from">Stop:
-                        
-                        <input class="form-control" type="text" name="stopAdd" id="stopAdd" placeholder="Enter Stop Name" aria-describedby="basic-addon2"></label>
+
+                            <input class="form-control" type="text"
+                                name="stopAdd" id="stopAdd" placeholder="Enter
+                                Stop Name" aria-describedby="basic-addon2"></label>
                         <br>
                         <label for="dateTime">Pin Code:
-                        
-                            <input class="form-control" type="text" name="stopLocation" id="stopLocation" placeholder="KY16 9UX" aria-describedby="basic-addon2"></label>
-                            <br>
-                            <label for="addDay">From Date:
-                    <input type="datetime-local" name="addDay" id="addDay"
-                        class="form-control" value="" required="required"
-                        title="" placeholder="Choose Date/Time"></label>
 
+                            <input class="form-control" type="text"
+                                name="stopLocation" id="stopLocation"
+                                placeholder="KY16 9UX"
+                                aria-describedby="basic-addon2"></label>
+                        <br>
+                        <label for="addDay">Schedule Date:
+                            <input type="datetime-local" name="addDay"
+                                id="addDay"
+                                class="form-control" value=""
+                                required="required"
+                                title="" placeholder="Choose Date/Time"></label>
                     </div>
                 </div>
 
@@ -135,22 +290,30 @@
                         onclick="AddStop()">Add Route</button>
                 </div>
 
-            </div>
+            </div> -->
         </div>
 
 
 
 
-        <div class="container  my-4 text-center">
+        <div class="container my-4 text-center">
             <div class="bg-light p-4">
                 <h3 class="text-bg-warning ">Busses Available</h3>
 
-                <div class="row" id="searchResult">
+                <div class="row">
 
+                    <table class="table table-bordered">
+                        <thead id="searchResultHeader">
+
+                        </thead>
+                        <tbody id="searchResult">
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            
+
 
         </div>
 

@@ -35,6 +35,11 @@ window.onload = async function Options() {
         let elementValue = element.split(" ").join("-");
         document.getElementById("from").innerHTML = document.getElementById("from").innerHTML +'<option value ='+elementValue+'>'+element+'</option>'
         document.getElementById("to").innerHTML = document.getElementById("to").innerHTML +'<option value ='+elementValue+'>'+element+'</option>'
+
+        document.getElementById("from1").innerHTML = document.getElementById("from1").innerHTML +'<option value ='+elementValue+'>'+element+'</option>'
+        document.getElementById("from2").innerHTML = document.getElementById("from2").innerHTML +'<option value ='+elementValue+'>'+element+'</option>'    
+        document.getElementById("from3").innerHTML = document.getElementById("from3").innerHTML +'<option value ='+elementValue+'>'+element+'</option>'
+        
     })
 
     routes.forEach(element =>{
@@ -56,55 +61,119 @@ async function SearchBuses() {
     console.log(time);
 
 
-        //API Request
-        const request = await fetch(`http://localhost:8080/buses?from=${from}&to=${to}&day=${weekdays[day.getDay()]}&time=${time}`, { method: "GET" });
-        //const request = await fetch(`http://localhost:8080/buses?from=dra`, { method: "GET" });
-        const response = await request.json();
-        console.log(response);
-
-        DisplayBus(response);
+       if((from != to)&&(document.getElementById("day").value!="")){
+         //API Request
+         const request = await fetch(`http://localhost:8080/buses?from=${from}&to=${to}&day=${weekdays[day.getDay()]}&time=${time}`, { method: "GET" });
+         //const request = await fetch(`http://localhost:8080/buses?from=dra`, { method: "GET" });
+         const response = await request.json();
+         console.log(response);
+ 
+         DisplayBus(response);
+ 
+         document.getElementById("searchResult").innerHTML=""
+        document.getElementById("searchResultHeader").innerHTML=""
+        document.getElementById("searchResultHeader").innerHTML ="<tr>"+
+        '<th>From</th>'+
+        "<th>Destination</th>"+
+        "<th>Route</th>"+
+        "<th>Direction</th>"+
+        "<th>Day</th>"+
+        "<th>Time</th>"+
+     " </tr>"
+ 
+     for (const key in response) {
+         response[key].forEach(element => {
+             document.getElementById("searchResult").innerHTML = document.getElementById("searchResult").innerHTML + '<tr><td>'+from+'<td>'+to+ '<td>'+element.split(" ")[0]+ '<td>'+element.split(" ")[1]+ '<td>'+weekdays[day.getDay()]+ '<td>'+time+'<tr/>';
+         });
+     }
+ 
+         if (response.searchResult.length == 0) {
+             document.getElementById("searchResult").innerHTML = document.getElementById("searchResult").innerHTML + "<h5 class='textcenter'>No Result</h5>"
+         }
+       }else if(document.getElementById("day").value==""){
+        window.alert("Choose Date")
+       }
+       else{
+        window.alert("Choose DIfferent Destination")
+       }
 
 }
 
 //List all routes serving a given stop
 async function BusesForaStop() {
-    const from = (document.getElementById("from").value).split("-").join(" ");
+    const from = (document.getElementById("from1").value).split("-").join(" ");
     const request = await fetch(`http://localhost:8080/buses?from=${from}`, { method: "GET" });
         const response = await request.json();
         console.log(response);
 
-        DisplayBus(response);
+       // DisplayBus(response);
+       document.getElementById("searchResult").innerHTML=""
+       document.getElementById("searchResultHeader").innerHTML=""
+       document.getElementById("searchResultHeader").innerHTML ="<tr>"+
+       '<th>From</th>'+
+       "<th>Route</th>"+
+       "<th>Direction</th>"+
+    " </tr>"
+
+    for (const key in response) {
+        response[key].forEach(element => {
+            document.getElementById("searchResult").innerHTML = document.getElementById("searchResult").innerHTML + '<tr><td>'+from+ '<td>'+element.split(" ")[0]+ '<td>'+element.split(" ")[1]+'<tr/>';
+        });
+    }
+
+    if (response.searchResult.length == 0) {
+        document.getElementById("searchResult").innerHTML = document.getElementById("searchResult").innerHTML + "<h5 class='textcenter'>No Result</h5>"
+    }
 
 }
 
 //List all times through the day a stop has service.
 async function BusesOnDay() {
-    const from = (document.getElementById("from").value).split("-").join(" ");
+    const from = (document.getElementById("from2").value).split("-").join(" ");
     document.getElementById("searchResult").innerHTML = "";
 
     const weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    const day = new Date(document.getElementById("day").value);
+    const day = new Date(document.getElementById("day2").value);
     console.log(weekdays[day.getDay()]);
 
     const request = await fetch(`http://localhost:8080/buses?from=${from}&day=${day}`, { method: "GET" });
         const response = await request.json();
         console.log(response);
         
-        DisplayBus(response);
+        //DisplayBus(response);
+       document.getElementById("searchResult").innerHTML=""
+       document.getElementById("searchResultHeader").innerHTML=""
+       document.getElementById("searchResultHeader").innerHTML ="<tr>"+
+       '<th>From</th>'+
+       "<th>Route</th>"+
+       "<th>Direction</th>"+
+       "<th>Day</th>"+
+       "<th>Time</th>"+
+    " </tr>"
+
+    for (const key in response) {
+        response[key].forEach(element => {
+            document.getElementById("searchResult").innerHTML = document.getElementById("searchResult").innerHTML + '<tr><td>'+from+ '<td>'+element.split(" ")[0]+ '<td>'+element.split(" ")[1]+ '<td>'+element.split(" ")[2]+ '<td>'+element.split(" ")[3]+'<tr/>';
+        });
+    }
+
+    if (response.searchResult.length == 0) {
+        document.getElementById("searchResult").innerHTML = document.getElementById("searchResult").innerHTML + "<h5 class='textcenter'>No Result</h5>"
+    }
 
 }
 
 //List all routes serving a given stop at a certain time of day
 async function BusesOnDayTime() {
 
-    const from = (document.getElementById("from").value).split("-").join(" ");
+    const from = (document.getElementById("from3").value).split("-").join(" ");
     
 
     const weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    const day = new Date(document.getElementById("day").value);
+    const day = new Date(document.getElementById("day3").value);
     console.log(weekdays[day.getDay()]);
 
-    const time = (document.getElementById("day").value).substring(11);
+    const time = (document.getElementById("day3").value).substring(11);
     console.log(time);
 
     //API Request
@@ -113,7 +182,26 @@ async function BusesOnDayTime() {
     const response = await request.json();
     console.log(response);
 
-    DisplayBus(response);
+    //DisplayBus(response);
+
+    document.getElementById("searchResult").innerHTML=""
+       document.getElementById("searchResultHeader").innerHTML=""
+       document.getElementById("searchResultHeader").innerHTML ="<tr>"+
+       '<th>From</th>'+
+       "<th>Route</th>"+
+       "<th>Direction</th>"+
+       "<th>Day</th>"+
+       "<th>Time</th>"+
+    " </tr>"
+
+    for (const key in response) {
+        response[key].forEach(element => {
+            document.getElementById("searchResult").innerHTML = document.getElementById("searchResult").innerHTML + '<tr><td>'+from+ '<td>'+element.split(" ")[0]+ '<td>'+element.split(" ")[1]+ '<td>'+weekdays[day.getDay()]+ '<td>'+time+'<tr/>';
+        });
+    }
+    if (response.searchResult.length == 0) {
+        document.getElementById("searchResult").innerHTML = document.getElementById("searchResult").innerHTML + "<h5 class='textcenter'>No Result</h5>"
+    }
     
 }
 
@@ -158,7 +246,7 @@ function DisplayBus(response) {
 
     for (const key in response) {
         response[key].forEach(element => {
-            document.getElementById("searchResult").innerHTML = document.getElementById("searchResult").innerHTML + element+'<br/>';
+            document.getElementById("searchResult").innerHTML = document.getElementById("searchResult").innerHTML + '<tr>'+element+'<tr/>';
         });
     }
     

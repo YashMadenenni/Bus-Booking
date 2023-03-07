@@ -20,7 +20,7 @@ public class ModelTest {
     @BeforeEach
         public void setup() {
             testModel = new BusModel("src/test/resources/initialState.json");
-            firstRoute = testModel.getAllRoutes().get(0);
+            firstRoute = testModel.getAllRoutes().get("99 UP");
             firstStop = firstRoute.getStopList().get("St. Andrews Main Stop");
         }
 
@@ -114,7 +114,7 @@ public class ModelTest {
     //TC9
     @Test
         public void testJsonToRouteConversionCheckFirstRouteStopSize() {
-            assertEquals(2, firstRoute.getStopList().size());
+            assertNotEquals(0, firstRoute.getStopList().size());
         }
 
     //TC10

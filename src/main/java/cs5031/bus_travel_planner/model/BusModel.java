@@ -1,5 +1,5 @@
 package cs5031.bus_travel_planner;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.io.FileNotFoundException;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,10 +11,12 @@ import java.nio.file.Paths;
 
 
 public class BusModel {
-    private ArrayList<Route> allRoutes;
+    private HashMap<String, Route> allRoutes;
+    private String initialPath;
 
     public BusModel(String jsonPath) {
 
+        this.initialPath = jsonPath;
         JSONObject json = null;
         try {
             json = loadInitialState(jsonPath); 
@@ -32,8 +34,37 @@ public class BusModel {
         JSONObject container = new JSONObject();
         JSONArray routeArray = new JSONArray();
 
-        for(Route routeItem : allRoutes) {
+        for(Route routeItem : allRoutes.values()) {
             if(null != routeItem.getStopList().get(stop)) {
+                routeArray.put(
+                        routeItem.getRouteName() + " " + routeItem.getDirection());
+            }
+        }
+
+        container.put("searchResult", routeArray);
+
+        return container.toString();
+    }
+
+    public String getRoutesFromToStop(String srcStop, String dstStop) {
+
+        JSONObject container = new JSONObject();
+        JSONArray routeArray = new JSONArray();
+        
+        System.out.println("FIRST POINT "+ srcStop + dstStop);
+
+        for(Route routeItem : allRoutes.values()) {
+            Stop src = routeItem.getStopList().get(srcStop);
+            Stop dst = routeItem.getStopList().get(dstStop);
+
+            
+            if(null != src &&
+                    null != dst) {
+            System.out.println("ROUTE " + routeItem.getRouteName() + routeItem.getDirection());
+                System.out.println(src.getStopName());
+                System.out.println(dst.getStopName());
+                System.out.println();
+
                 routeArray.put(
                         routeItem.getRouteName() + " " + routeItem.getDirection());
             }
@@ -49,7 +80,7 @@ public class BusModel {
         JSONObject container = new JSONObject();
         JSONArray routeArray = new JSONArray();
 
-        for(Route routeItem : allRoutes) {
+        for(Route routeItem : allRoutes.values()) {
             Stop matchedStop = routeItem.getStopList().get(stop);
             if(null != matchedStop) {
 
@@ -73,7 +104,7 @@ public class BusModel {
         JSONObject container = new JSONObject();
         JSONArray routeArray = new JSONArray();
 
-        for(Route routeItem : allRoutes) {
+        for(Route routeItem : allRoutes.values()) {
             Stop matchedStop = routeItem.getStopList().get(stop);
             if(null != matchedStop) {
 
@@ -100,9 +131,9 @@ public class BusModel {
             return new JSONObject(jsonBody);
         }
 
-    private ArrayList<Route> processJsonObject(JSONObject json) {
+    private HashMap<String, Route> processJsonObject(JSONObject json) {
 
-        ArrayList<Route> allRoutes = new ArrayList<Route>();
+        HashMap<String, Route> allRoutes = new HashMap<String, Route>();
         
         JSONArray jsonRoutes = json.getJSONArray("routes");
 
@@ -124,7 +155,8 @@ public class BusModel {
                 newRoute.addStop(stopToAdd);
             }
             
-            allRoutes.add(newRoute);
+            String name = newRoute.getRouteName() + " " + newRoute.getDirection();
+            allRoutes.put(name, newRoute);
         }
 
         return allRoutes;
@@ -153,7 +185,38 @@ public class BusModel {
         return stopToAdd;
     }
 
-    public ArrayList<Route> getAllRoutes() {
+    public void addStopToRoute(JSONObject json) {
+        String routeName = json.getString("route");
+            for(Route routeItem : allRoutes.values()) {
+            }
+        Route route = getAllRoutes().get(routeName);
+        if(null != route) {
+            route.addStop(parseStopJson(json));
+            //writeToJson(route);
+        }
+    }
+
+    public String getIndex() {
+    String output = null;
+        try {
+            output = (loadInitialState(this.initialPath)).toString();
+        }
+        catch (IOException | JSONException e){
+        }
+        return output;
+    }
+
+/*
+    private void writeToJson() {
+        
+       JSONObject obj = null;
+       JSONArray routeArray = null;
+
+        obj.put();        
+    }
+    */
+
+    public HashMap<String, Route> getAllRoutes() {
         return allRoutes;
     }
 }

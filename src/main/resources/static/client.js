@@ -246,6 +246,8 @@ async function AddStop() {
             window.alert("Sucess")
 
             Options(); // recall Options/Locations
+            //window.reload();
+            location.reload(true);
 
         } else {
             window.alert("Error Try Again")

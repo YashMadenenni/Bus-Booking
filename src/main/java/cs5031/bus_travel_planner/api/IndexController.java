@@ -28,18 +28,21 @@ public class IndexController {
 
     //All the locations
     @RequestMapping(method = RequestMethod.GET, value = "/locations",produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public String locations() {
-        return "initialState.json";
+        return model.getIndex();
+        //.return "initialState.json";
     }
 
     //Search Start
     //To search
     @RequestMapping(method = RequestMethod.GET, value = "/buses", 
     params = {"from","to","day","time"},produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public String searchResults(@RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("day") String day) {
         // 
-        // model.search(from,to,day);
-        return "buses.json";
+        return model.getRoutesFromToStop(from,to);
+        //return "buses.json";
     }
 
     //List all routes serving a given stop
@@ -79,9 +82,8 @@ public class IndexController {
     @PostMapping (value = "/buses/addRoute") 
     @ResponseBody //sends actual content in double quotes
     public String searchResults(@RequestBody String requestBody ) {
-        System.out.println(requestBody);
+        //System.out.println(requestBody);
         JSONObject obj = JsonIO.convertStringToJson(requestBody);
-        model.addStopToRoute(obj);
 
         JSONObject initialObj = null;
         try {
@@ -89,8 +91,9 @@ public class IndexController {
         }
         catch (IOException | JSONException e){
         }
-        JsonIO.addStopJson(obj, initialObj);
+        JsonIO.addStopJson(obj, initialObj, requestBody);
         
+        model.addStopToRoute(obj);
 
         //String route = requestBody.getRoute();
         //String stop = requestBody.getStop();

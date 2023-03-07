@@ -11,30 +11,43 @@ public class JsonIO {
     protected static final String initialFilePath =
         "src/main/resources/static/initialState.json";
 
-    public static void addStopJson(JSONObject stop, JSONObject json) {
+    public static void addStopJson(JSONObject stop, JSONObject json, String request) {
 
-JSONArray successObject=new JSONArray();
-successObject.put(stop.toString());
-
-        System.out.println(successObject.toString());
-
-
+        String splitData[] = request.split(",", 2);
+        String stopToAdd = "{" + splitData[1];
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(stopToAdd);
+        }catch (JSONException err){
+        }
 
         String routeName[] = stop.getString("route").split("\\s+");
-        JSONObject stopToAdd = (JSONObject)stop.remove("route");
         JSONArray jsonRoutes = json.getJSONArray("routes");
 
         for(int i = 0; i < jsonRoutes.length(); ++i) {
             JSONObject jObj = jsonRoutes.getJSONObject(i);
 
 
-            if(routeName[0].equals(jObj.getString("routeName"))) {
+            if(routeName[0].equals(jObj.getString("routeName")) &&
+            routeName[1].equals(jObj.getString("direction"))) {
                 JSONArray jsonStops = jObj.getJSONArray("stopList");
-                //jsonStops.put("{}");
-        System.out.println(jsonStops.toString());
+                jsonStops.put(jsonObject);
             }
         }
 
+        File myObj = new File(initialFilePath); 
+        if (myObj.delete()) { 
+            System.out.println("Deleted the file: " + myObj.getName());
+        }
+
+        try (PrintWriter out = new PrintWriter(new FileWriter(initialFilePath))) {
+            out.write(json.toString());
+            out.close();
+        } catch (Exception e) {} 
+
+
+
+        //System.out.println(json.toString());
     }
 
     public static JSONObject convertStringToJson(String jsonString) {

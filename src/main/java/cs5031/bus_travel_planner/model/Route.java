@@ -4,7 +4,6 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 
 public class Route {
-    private int routeId;
     private String routeName;
     private LinkedHashMap<String, Stop> stopList;
     private String direction;

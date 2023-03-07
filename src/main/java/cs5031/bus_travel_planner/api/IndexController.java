@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.json.JSONObject;
+import org.json.JSONException;
+import java.io.IOException;
 
 @Controller
 public class IndexController {
@@ -76,9 +78,22 @@ public class IndexController {
     //To add a stop to Route
     @PostMapping (value = "/buses/addRoute") 
     @ResponseBody //sends actual content in double quotes
-    public String searchResults(@RequestBody RouteStop requestBody ) {
-        String route = requestBody.getRoute();
-        String stop = requestBody.getStop();
+    public String searchResults(@RequestBody String requestBody ) {
+        System.out.println(requestBody);
+        JSONObject obj = JsonIO.convertStringToJson(requestBody);
+        model.addStopToRoute(obj);
+
+        JSONObject initialObj = null;
+        try {
+        initialObj = model.loadInitialState(JsonIO.initialFilePath);
+        }
+        catch (IOException | JSONException e){
+        }
+        JsonIO.addStopJson(obj, initialObj);
+        
+
+        //String route = requestBody.getRoute();
+        //String stop = requestBody.getStop();
         
         // model.addStopToRoute();
         return "Adding";

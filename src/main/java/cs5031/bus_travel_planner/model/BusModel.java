@@ -1,5 +1,5 @@
 package cs5031.bus_travel_planner;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.io.FileNotFoundException;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 
 
 public class BusModel {
-    private ArrayList<Route> allRoutes;
+    private HashMap<String, Route> allRoutes;
 
     public BusModel(String jsonPath) {
 
@@ -32,7 +32,7 @@ public class BusModel {
         JSONObject container = new JSONObject();
         JSONArray routeArray = new JSONArray();
 
-        for(Route routeItem : allRoutes) {
+        for(Route routeItem : allRoutes.values()) {
             if(null != routeItem.getStopList().get(stop)) {
                 routeArray.put(
                         routeItem.getRouteName() + " " + routeItem.getDirection());
@@ -49,7 +49,7 @@ public class BusModel {
         JSONObject container = new JSONObject();
         JSONArray routeArray = new JSONArray();
 
-        for(Route routeItem : allRoutes) {
+        for(Route routeItem : allRoutes.values()) {
             Stop matchedStop = routeItem.getStopList().get(stop);
             if(null != matchedStop) {
 
@@ -73,7 +73,7 @@ public class BusModel {
         JSONObject container = new JSONObject();
         JSONArray routeArray = new JSONArray();
 
-        for(Route routeItem : allRoutes) {
+        for(Route routeItem : allRoutes.values()) {
             Stop matchedStop = routeItem.getStopList().get(stop);
             if(null != matchedStop) {
 
@@ -100,9 +100,9 @@ public class BusModel {
             return new JSONObject(jsonBody);
         }
 
-    private ArrayList<Route> processJsonObject(JSONObject json) {
+    private HashMap<String, Route> processJsonObject(JSONObject json) {
 
-        ArrayList<Route> allRoutes = new ArrayList<Route>();
+        HashMap<String, Route> allRoutes = new HashMap<String, Route>();
         
         JSONArray jsonRoutes = json.getJSONArray("routes");
 
@@ -124,7 +124,7 @@ public class BusModel {
                 newRoute.addStop(stopToAdd);
             }
             
-            allRoutes.add(newRoute);
+            allRoutes.put(newRoute.getRouteName(), newRoute);
         }
 
         return allRoutes;
@@ -153,7 +153,15 @@ public class BusModel {
         return stopToAdd;
     }
 
-    public ArrayList<Route> getAllRoutes() {
+    public void addStopToRoute(JSONObject json) {
+        String routeName[] = json.getString("route").split("\\s+");
+        Route route = getAllRoutes().get(routeName[0]);
+        if(null != route) {
+            route.addStop(parseStopJson(json));
+        }
+    }
+
+    public HashMap<String, Route> getAllRoutes() {
         return allRoutes;
     }
 }

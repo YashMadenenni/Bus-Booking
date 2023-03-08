@@ -22,12 +22,6 @@ public class IndexControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
-
-	// @Test
-	// public void shouldReturnDefaultMessage() throws Exception {
-	// 	this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-	// 			.andExpect(content().string(containsString("Welocme to Bus Travel Planner!")));
-	// }
 		BusModel busModel = new BusModel("src/test/resources/initialState.json");
 	
 	@Test
@@ -59,7 +53,6 @@ public class IndexControllerTest {
     public void testGetSearchResults() throws Exception {
         mockMvc.perform(get("/buses?from=DRA&to=St.Andrews&day=Tuesday&time=11:00"))
                 .andExpect(status().isOk())
-                //  .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                  .andExpect(content().string(containsString("")));
     }
 
@@ -86,9 +79,6 @@ public class IndexControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                  .andExpect(content().string(containsString("{\"searchResult\":[]}")));
     }
-
-
-	// valid result
 	
 	@Test
     public void testAddStop() throws Exception {

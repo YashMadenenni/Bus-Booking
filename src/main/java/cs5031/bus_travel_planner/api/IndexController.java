@@ -31,7 +31,6 @@ public class IndexController {
     @ResponseBody
     public String locations() {
         return model.getIndex();
-        //.return "initialState.json";
     }
 
     //Search Start
@@ -40,9 +39,8 @@ public class IndexController {
     params = {"from","to","day","time"},produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String searchResults(@RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("day") String day) {
-        // 
+         
         return model.getRoutesFromToStop(from,to);
-        //return "buses.json";
     }
 
     //List all routes serving a given stop
@@ -51,8 +49,6 @@ public class IndexController {
     // @CrossOrigin(origins = "http://localhost:8080/buses")
     public String searchBusesForStop(@RequestParam("from") String from) {
          
-        //JsonIO.convertStringToJson(model.getRoutesFromStop(from));
-        //return "buses.json";
         return model.getRoutesFromStop(from);
     }
 
@@ -60,9 +56,7 @@ public class IndexController {
     @RequestMapping(method = RequestMethod.GET, value = "/buses", params = {"from","day","time"},produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String searchBusesForStop(@RequestParam("from") String from,  @RequestParam("day") String day, @RequestParam("time") String time) {
-        
-        //JsonIO.convertStringToJson(model.getRoutesFromStop(from, day, time));
-        //return "buses.json";
+    
         return model.getRoutesFromStop(from, day, time);
     }
     
@@ -71,8 +65,6 @@ public class IndexController {
     @ResponseBody
     public String searchBusesForStopReturnTime(@RequestParam("from") String from, @RequestParam("day") String day) {
         
-        //JsonIO.convertStringToJson(model.getRoutesFromStop(from, day));
-        //return "buses.json";
         return model.getRoutesFromStop(from, day);
     }
 
@@ -80,9 +72,9 @@ public class IndexController {
 
     //To add a stop to Route
     @PostMapping (value = "/buses/addRoute") 
-    @ResponseBody //sends actual content in double quotes
+    @ResponseBody 
     public String addRoute(@RequestBody String requestBody ) {
-        //System.out.println(requestBody);
+        
         JSONObject obj = JsonIO.convertStringToJson(requestBody);
 
         JSONObject initialObj = null;

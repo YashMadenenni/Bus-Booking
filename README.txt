@@ -44,3 +44,6 @@ CURL commands:
 
 - List all times through the day a stop has service
 	curl 'http://localhost:8080/buses?from=St.%20Andrews%20Main%20Stop&day=Monday'
+
+- Add a new stop on a route
+	curl -X POST http://localhost:8080/buses/addRoute -H "Content-Type: application/json" -d "{\"route\": \"99 UP\", \"stopName\": \"Test\", \"stopLocation\": \"KY16 9LY\", \"timeTable\": [{\"Time\": \"Tuesday 18:19\"}]}"

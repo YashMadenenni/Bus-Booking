@@ -1,11 +1,15 @@
 //console.log("client.js");
 
 window.onload = Options();
+
+//function to append options 
 async function Options() {
     //API Request
     const request = await fetch("http://localhost:8080/locations", { method: "GET" });
     const response = await request.json();
     console.log(response);
+
+    //re-setting options
     document.getElementById("from").innerHTML = '<option value selected>Choose location</option>'
     document.getElementById("to").innerHTML = '<option value selected>Choose location</option>'
 
@@ -77,7 +81,6 @@ async function SearchBuses() {
     if ((from != to) && (document.getElementById("day").value != "")) {
         //API Request
         const request = await fetch(`http://localhost:8080/buses?from=${from}&to=${to}&day=${weekdays[day.getDay()]}&time=${time}`, { method: "GET" });
-        //const request = await fetch(`http://localhost:8080/buses?from=dra`, { method: "GET" });
         const response = await request.json();
         console.log(response);
 
@@ -119,7 +122,6 @@ async function BusesForaStop() {
     const response = await request.json();
     console.log(response);
 
-    // DisplayBus(response);
     document.getElementById("searchResult").innerHTML = ""
     document.getElementById("searchResultHeader").innerHTML = ""
     document.getElementById("searchResultHeader").innerHTML = "<tr>" +
@@ -153,7 +155,6 @@ async function BusesOnDay() {
     const response = await request.json();
     console.log(response);
 
-    //DisplayBus(response);
     document.getElementById("searchResult").innerHTML = ""
     document.getElementById("searchResultHeader").innerHTML = ""
     document.getElementById("searchResultHeader").innerHTML = "<tr>" +
@@ -195,8 +196,6 @@ async function BusesOnDayTime() {
     const response = await request.json();
     console.log(response);
 
-    //DisplayBus(response);
-
     document.getElementById("searchResult").innerHTML = ""
     document.getElementById("searchResultHeader").innerHTML = ""
     document.getElementById("searchResultHeader").innerHTML = "<tr>" +
@@ -218,6 +217,7 @@ async function BusesOnDayTime() {
 
 }
 
+//function to add stop
 async function AddStop() {
     let routeName = (document.getElementById("route").value).split("-").join(" ");;
     let stop = document.getElementById("stopAdd").value;
@@ -246,19 +246,20 @@ async function AddStop() {
             window.alert("Sucess")
 
             Options(); // recall Options/Locations
-            //window.reload();
-            location.reload(true);
+
+            //location.reload(true);
 
         } else {
             window.alert("Error Try Again")
         }
-        //const response = await request.json();
+
 
     } catch (error) {
         console.error(error);
     }
 }
 
+//function to display results
 function DisplayBus(response) {
     document.getElementById("searchResult").innerHTML = "";
 

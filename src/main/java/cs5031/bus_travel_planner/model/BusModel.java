@@ -242,15 +242,15 @@ public class BusModel {
     * Adds a stop to a route specified in a JSON object.
     * @param json A JSONObject containing the name of the route and the data for the new stop.
     */
-    public void addStopToRoute(JSONObject json) {
+    public boolean addStopToRoute(JSONObject json) {
         String routeName = json.getString("route");
-            for(Route routeItem : allRoutes.values()) {
-            }
+
         Route route = getAllRoutes().get(routeName);
         if(null != route) {
             route.addStop(parseStopJson(json));
-            //writeToJson(route);
+            return true;
         }
+        return false;
     }
 
     /**
